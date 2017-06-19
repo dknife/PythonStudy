@@ -1,0 +1,15 @@
+sentence = "the quick brown fox jumps over the lazy dog"
+words = sentence.split()
+word_lengths = []
+for word in words:
+      if word != "the":
+          word_lengths.append(len(word))
+
+#compute the length sum of words except for the word "the"
+lenSum = 0
+lens = [len(word) for word in words if word != 'the']
+for lens in lens :
+    lenSum += lens
+
+print(words)
+print(lenSum)
