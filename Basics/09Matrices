@@ -1,0 +1,11 @@
+import numpy as np
+
+a = [1,2]  # a list
+b = [3,4]  # another list
+c = [a,b]
+print(c)
+print("The length of the list(c) of lists(a,b) is 2 not (2 by 2):",len(c))
+
+C = np.array(c)
+print(C)
+print("Numpy can make it a matrix with the size of 2 by 2:", C.shape)

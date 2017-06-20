@@ -1,0 +1,8 @@
+mySet = set("my name is Eric and Eric is my name".split())
+
+yourSet = set("your name is George Bush and Moron is your name".split())
+
+print(mySet)
+print(yourSet)
+print(mySet.union(yourSet))
+print(mySet)
