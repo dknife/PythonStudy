@@ -1,0 +1,35 @@
+import numpy as np
+import math
+class Triangle :
+    points = []
+
+    def __init__(self):
+        self.points = [[0,0,0], [0,0,0], [0,0,0]]
+
+    def __init__(self, p1, p2, p3):
+        self.points = [p1, p2, p3]
+
+    def printData(self):
+        print(self.points)
+
+    def area(self):
+        v1 = self.points[1] - self.points[0]
+        v2 = self.points[2] - self.points[0]
+        crossProduct = np.cross(v1, v2)
+        return (math.fabs(np.linalg.norm(crossProduct)*0.5))
+
+triangles = []
+for x in range(100):
+    points = [np.random.ranf([3]), np.random.ranf([3]), np.random.ranf([3])]
+    triangles.append(Triangle(points[0], points[1], points[2]))
+
+
+maxTriangle = triangles[0]
+for tri in triangles :
+    if maxTriangle.area() < tri.area() :
+        maxTriangle = tri
+
+print("Max Triangle Area: ", maxTriangle.area())
+print("Max Triangle : ")
+maxTriangle.printData()
+
