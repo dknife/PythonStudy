@@ -1,0 +1,57 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
+plt.rcParams['animation.ffmpeg_path'] = 'd:\\ffmpeg\\bin\\ffmpeg.exe'
+
+def bubble(list, start, end) :
+    idx = start
+    while idx < end :
+        if list[idx] > list[idx+1]:
+            t = list[idx]
+            list[idx] = list[idx+1]
+            list[idx+1] = t
+        idx += 1
+
+def bubbleSort(list, N) :
+    nList = N-1
+    while nList>0 :
+        bubble(list, 0, nList)
+        nList -= 1
+
+N = 100
+
+fig, ax = plt.subplots()
+xdata = np.arange(0,N)
+ydata = np.random.randn(N)+3
+backup = []
+
+for ydataElement in ydata :
+    backup.append(ydataElement)
+
+rects = plt.bar(xdata, ydata, color='c', animated = True)
+plt.ylim(0,6)
+
+def resetData(list):
+    backup=np.random.randn(N)+3
+    for i in range(len(backup)) :
+        list[i] = backup[i]
+
+global n
+n=N
+
+def update(frame):
+    global n
+    bubble(ydata, 0, n-1)
+    for rect, h in zip(rects,ydata):
+        rect.set_height(h)
+    n-=1
+    if n<1 :
+        n = N
+        resetData(ydata)
+    print(n)
+    return rects
+plt.title("Bubble sort with normally distributed numbers")
+ani = FuncAnimation(fig, update,  interval = 10, blit = True)
+ani.save('bubbleSort.mp4', writer="ffmpeg")
+plt.show()

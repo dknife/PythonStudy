@@ -1,0 +1,49 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
+plt.rcParams['animation.ffmpeg_path'] = 'd:\\ffmpeg\\bin\\ffmpeg.exe'
+
+
+N = 100
+fig, ax = plt.subplots()
+xdata = np.arange(0,N)
+ydata = np.random.randn(N)+3
+
+ims = []
+
+def partition(list, s, e):
+    left = s+1
+    right = e
+    p = list[s]
+    done = False
+    while not done :
+        while left <= right and list[left]<=p:
+            left += 1
+        while list[right]>=p and right>=left:
+            right -= 1
+        if left > right:
+            done = True
+        else :
+            temp = list[left]
+            list[left] = list[right]
+            list[right] = temp
+
+    list[s] = list[right]
+    list[right] = p
+    return right
+
+
+def qsort(list, start, end) :
+    if start<end :
+        pivot = partition(list, start, end)
+        ims.append(plt.bar(xdata, ydata, color='c'))
+        qsort(list, start, pivot-1)
+        qsort(list, pivot+1, end)
+
+plt.title("Quicksort with normally distributed random numbers")
+qsort(ydata, 0, N-1)
+#plt.bar(xdata, ydata)
+im_ani = animation.ArtistAnimation(fig, ims, interval=50, repeat_delay=100, blit=True)
+im_ani.save('QuickSort.mp4', writer="ffmpeg")
+plt.show()
