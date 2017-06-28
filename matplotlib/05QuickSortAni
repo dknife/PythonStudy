@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import matplotlib.animation as animation
 plt.rcParams['animation.ffmpeg_path'] = 'd:\\ffmpeg\\bin\\ffmpeg.exe'
-
+import os
 
 N = 100
 fig, ax = plt.subplots()
@@ -46,4 +46,5 @@ qsort(ydata, 0, N-1)
 #plt.bar(xdata, ydata)
 im_ani = animation.ArtistAnimation(fig, ims, interval=50, repeat_delay=100, blit=True)
 im_ani.save('QuickSort.mp4', writer="ffmpeg")
+os.system("ffmpeg -i QuickSort.mp4 -r 10 -s 300x300 qqq.gif")
 plt.show()
