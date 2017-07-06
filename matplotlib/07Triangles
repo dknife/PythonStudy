@@ -1,0 +1,71 @@
+# -----------------------------------------------------------------------------
+# 2017, Young-Min Kang. All Rights Reserved.
+# Harmonic Oscillator
+# -----------------------------------------------------------------------------
+
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from matplotlib.widgets import Button
+
+matplotlib.rcParams['toolbar'] = 'None'
+
+fig = plt.figure(figsize=(6, 6), facecolor='white')
+
+P = np.array([[0.0,15.0],[-1.0,15.0-np.sqrt(3.0)],[1.0,15-np.sqrt(3.0)]])
+V = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
+S = np.array([[0,1], [1,2], [2,0]])
+k = 10.0
+d = 0.1
+g = np.array([0,-9.8])
+scat = plt.scatter(P[:, 0], P[:, 1])
+plt.xlim(-10,10)
+plt.ylim(0,20)
+
+startFlag = False
+
+def start(event) :
+    global startFlag
+    startFlag = True
+
+def reset(event) :
+    global P, V, startFlag
+    P = np.array([[0.0, 15.0], [-1.0, 15.0 - np.sqrt(3.0)], [1.0, 15 - np.sqrt(3.0)]])
+    V = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
+    startFlag = False
+
+def update(frame) :
+    global P, S, k, d, startFlag
+    if startFlag is False:
+        scat.set_offsets(P)
+        return scat,
+    h = 0.001
+    for i in range(3):
+        V[i] += g*h
+    for i in range(3):
+        P[i] += V[i]
+
+    # collision
+    e = 0.5;
+    for i in range(3):
+        if P[i][1] < 0:
+            P[i][1] -= (1.0+e)*P[i][1]
+            if V[i][1] < 0:
+                V[i][1] -= (1.0 + e) * V[i][1]
+
+    scat.set_offsets(P)
+    return scat,
+
+plt.grid(True)
+
+startBox = plt.axes([0.1, 0.9, 0.1, 0.05])
+bStart = Button(startBox, 'Start')
+bStart.on_clicked(start)
+
+resetBox = plt.axes([0.2, 0.9, 0.1, 0.05])
+bReset = Button(resetBox, 'Reset')
+bReset.on_clicked(reset)
+
+animation = FuncAnimation(fig, update, interval = 10, blit=True)
+plt.show()
