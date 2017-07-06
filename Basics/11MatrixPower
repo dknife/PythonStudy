@@ -1,0 +1,16 @@
+import numpy as np
+from numpy import linalg as la
+
+imgI = np.array([[0, 1], [-1, 0]]) # imaginary identity matrix im
+
+print(imgI)
+
+i2 = la.matrix_power(imgI, 2) # -I
+i3 = la.matrix_power(imgI, 3) # -im
+i4 = la.matrix_power(imgI, 4) #  I
+i5 = la.matrix_power(imgI, 5) #  im
+
+print(i2)
+print(i3)
+print(i4)
+print(i5)

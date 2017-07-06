@@ -1,0 +1,17 @@
+#linalg.eig(a)	Compute the eigenvalues and right eigenvectors of a square array.
+#linalg.eigh(a[, UPLO])	Return the eigenvalues and eigenvectors of a Hermitian or symmetric matrix.
+#linalg.eigvals(a)	Compute the eigenvalues of a general matrix.
+#linalg.eigvalsh(a[, UPLO])	Compute the eigenvalues of a Hermitian or real symmetric matrix.
+
+import numpy as np
+from numpy import linalg as la
+
+a = [1,1,0]
+b = [0,2,1]
+c = [0,0,3]
+
+M = np.array([a,b,c])
+
+eigenvalues = la.eigvals(M)
+
+print(eigenvalues)

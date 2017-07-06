@@ -13,10 +13,18 @@ matplotlib.rcParams['toolbar'] = 'None'
 
 fig = plt.figure(figsize=(6, 6), facecolor='white')
 
+def distance(a, b) :
+    lx = a[0] - b[0]
+    ly = a[1] - b[1]
+    return np.sqrt(lx*lx+ly*ly)
+
 P = np.array([[0.0,15.0],[-1.0,15.0-np.sqrt(3.0)],[1.0,15-np.sqrt(3.0)]])
 V = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
 S = np.array([[0,1], [1,2], [2,0]])
-k = 10.0
+F = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
+l0 = distance(P[0], P[1])
+
+k = 1000.0
 d = 0.1
 g = np.array([0,-9.8])
 scat = plt.scatter(P[:, 0], P[:, 1])
@@ -36,13 +44,28 @@ def reset(event) :
     startFlag = False
 
 def update(frame) :
-    global P, S, k, d, startFlag
+    global P, S, F, l0, k, d, startFlag
     if startFlag is False:
         scat.set_offsets(P)
         return scat,
     h = 0.001
+
     for i in range(3):
-        V[i] += g*h
+        F[i] = [0,0]
+
+    for i in range(3):
+        a = S[i][0]
+        b = S[i][1]
+        l = distance(P[a], P[b])
+        deform = l - l0
+        ab = (P[b] - P[a])/l
+        F[a] += (k*deform)*np.array(ab)
+        F[b] -= (k*deform)*np.array(ab)
+
+
+
+    for i in range(3):
+        V[i] += g*h + F[i]*h
     for i in range(3):
         P[i] += V[i]
 
