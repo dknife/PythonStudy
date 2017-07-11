@@ -24,23 +24,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="07Earthquate" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/07Earthquate">
+      <file leaf-file-name="07Triangles" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/07Triangles">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="35" />
+            <state relative-caret-position="490">
+              <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="47" />
               <folding>
-                <element signature="e#297#315#0" expanded="true" />
+                <element signature="e#242#260#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="07Triangles" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/07Triangles">
+      <file leaf-file-name="07Triangle2" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/07Triangle2">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+            <state relative-caret-position="338">
+              <caret line="95" column="22" lean-forward="true" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
               <folding>
                 <element signature="e#242#260#0" expanded="true" />
               </folding>
@@ -111,7 +111,7 @@
       <file leaf-file-name="08ScatterDrop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/08ScatterDrop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
+            <state relative-caret-position="1349">
               <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="49" />
               <folding>
                 <element signature="e#228#246#0" expanded="true" />
@@ -125,6 +125,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>cmap</find>
+      <find>lx*lx</find>
+      <find>beta</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -139,14 +141,15 @@
         <option value="$PROJECT_DIR$/07Earthquate" />
         <option value="$PROJECT_DIR$/08ScatterDrop.py" />
         <option value="$PROJECT_DIR$/07Triangles" />
+        <option value="$PROJECT_DIR$/07Triangle2" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -164,6 +167,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -178,7 +182,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -196,7 +199,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.07Triangles">
+  <component name="RunManager" selected="Python.07Triangle2">
     <configuration default="false" name="05QuickSortAni" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -210,24 +213,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="matplotlib" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/05QuickSortAni" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="07Earthquate" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="matplotlib" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/07Earthquate" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -282,6 +267,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="matplotlib" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/08ScatterDrop.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="07Triangle2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="matplotlib" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/07Triangle2" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -353,18 +356,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.05QuickSortAni" />
-      <item index="1" class="java.lang.String" itemvalue="Python.07Earthquate" />
-      <item index="2" class="java.lang.String" itemvalue="Python.07Triangles" />
-      <item index="3" class="java.lang.String" itemvalue="Python.02Histogram" />
-      <item index="4" class="java.lang.String" itemvalue="Python.08ScatterDrop" />
+      <item index="1" class="java.lang.String" itemvalue="Python.07Triangles" />
+      <item index="2" class="java.lang.String" itemvalue="Python.02Histogram" />
+      <item index="3" class="java.lang.String" itemvalue="Python.08ScatterDrop" />
+      <item index="4" class="java.lang.String" itemvalue="Python.07Triangle2" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.07Triangles" />
-        <item index="1" class="java.lang.String" itemvalue="Python.08ScatterDrop" />
-        <item index="2" class="java.lang.String" itemvalue="Python.05QuickSortAni" />
-        <item index="3" class="java.lang.String" itemvalue="Python.02Histogram" />
-        <item index="4" class="java.lang.String" itemvalue="Python.07Earthquate" />
+        <item index="0" class="java.lang.String" itemvalue="Python.07Triangle2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.07Triangles" />
+        <item index="2" class="java.lang.String" itemvalue="Python.08ScatterDrop" />
+        <item index="3" class="java.lang.String" itemvalue="Python.05QuickSortAni" />
+        <item index="4" class="java.lang.String" itemvalue="Python.02Histogram" />
       </list>
     </recent_temporary>
   </component>
@@ -382,17 +385,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="1912" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16614583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.178125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31151003" sideWeight="0.51770836" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31151003" sideWeight="0.48229167" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31104356" sideWeight="0.521875" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31104356" sideWeight="0.478125" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -423,16 +426,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/07Earthquate">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="35" />
-          <folding>
-            <element signature="e#297#315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/07Earthquate" />
     <entry file="file://$PROJECT_DIR$/01Bars">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -513,16 +507,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/07Earthquate">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="35" />
-          <folding>
-            <element signature="e#297#315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/07Earthquate" />
     <entry file="file://$PROJECT_DIR$/01Bars">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -603,16 +588,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/07Earthquate">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="35" />
-          <folding>
-            <element signature="e#297#315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/07Earthquate" />
     <entry file="file://$PROJECT_DIR$/07Triangles">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -827,16 +803,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/07Earthquate">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="35" />
-          <folding>
-            <element signature="e#297#315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/07Earthquate" />
     <entry file="file://$PROJECT_DIR$/02Histogram.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -886,7 +853,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/08ScatterDrop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
+        <state relative-caret-position="1349">
           <caret line="75" column="0" lean-forward="false" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="49" />
           <folding>
             <element signature="e#228#246#0" expanded="true" />
@@ -896,8 +863,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/07Triangles">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        <state relative-caret-position="490">
+          <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="47" />
+          <folding>
+            <element signature="e#242#260#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/07Triangle2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="95" column="22" lean-forward="true" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
           <folding>
             <element signature="e#242#260#0" expanded="true" />
           </folding>

@@ -21,13 +21,13 @@ def distance(a, b) :
     ly = a[1] - b[1]
     return np.sqrt(lx*lx+ly*ly)
 
-P = np.array([[0.0,15.0],[-1.0,15.0-np.sqrt(3.0)],[1.0,15.0-np.sqrt(3.0)]])
+P = np.array([[0.0,15.0],[-1.0,15.0-np.sqrt(3.0)],[9.0,15.0-np.sqrt(3.0)]])
 V = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
 S = np.array([[0,1], [1,2], [2,0]])
 F = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
 l0 = distance(P[0], P[1])
 
-k = 1000.0
+k = 100000000000.0
 d = 0.5
 g = np.array([0,-9.8])
 scat = plt.scatter(P[:, 0], P[:, 1])
@@ -46,7 +46,7 @@ def start(event) :
 
 def reset(event) :
     global P, V, startFlag
-    P = np.array([[0.0, 15.0], [-1.0, 15.0 - np.sqrt(3.0)], [1.0, 15.0 - np.sqrt(3.0)]])
+    P = np.array([[0.0, 15.0], [-1.0, 15.0 - np.sqrt(3.0)], [9.0, 15.0 - np.sqrt(3.0)]])
     V = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
     startFlag = False
 
@@ -60,18 +60,55 @@ def update(frame) :
     for i in range(3):
         F[i] = [0,0]
 
-    for i in range(3):
+    for i in range(3):  # for every spring
         a = S[i][0]
         b = S[i][1]
         l = distance(P[a], P[b])
+        m1 = 1.0;
+        m2 = 1.0;
+        omega1 = k/m1
+        omega2 = k/m2
+        omega = np.sqrt(omega1 + omega2)
+
         vr = V[b]-V[a]
         deform = l - l0
-        ab = (P[b] - P[a])/l
-        F[a] += (k*deform)*ab + d*vr;
-        F[b] -= (k*deform)*ab + d*vr;
+        ab = (P[b] - P[a])
+        abBar = ab / l
+        dldt = np.dot(ab, vr)/l
+
+        alpha = d*k/(2.0*np.sqrt(k*(m1+m2)))
+        A = np.sqrt(deform*deform + dldt*dldt*(m1+m2)/(k*(m1+m2)))
+        dDA = 0.0
+        arcsine = 0.0
+        if A != 0.0 :
+            dDA = deform/A;
+            arcsine = np.arcsin(dDA)
+        if deform>0 and dldt < 0 :
+            arcsine = np.pi - arcsine
+
+        if deform<=0 :
+            if dldt > 0 :
+                arcsine = 2.0 * np.pi + arcsine
+            else :
+                arcsine = np.pi - arcsine
+
+        t = arcsine
+        T0 = t / omega
+        T1 = T0 + h
+        exp_kdt0 = np.exp(-alpha*T0)
+        exp_kdh = np.exp(-alpha*h*omega)
+        coeff = 0.5 * A * k / (omega*omega + d*d)
+        swt = np.sin(omega*T0)
+        cwt = np.cos(omega*T0)
+        swh = np.sin(omega*h)
+        cwh = np.cos(omega*h)
+
+        f = -coeff*exp_kdt0 * ( swt*(exp_kdh*(d*cwh-omega*swh) - d) + cwt*(exp_kdh*(d*swh + omega*cwh) - omega) )
+        F[a] += (f/h)*abBar;
+        F[b] -= (f/h)*abBar;
 
     for i in range(3):
-        if i > 0 :
+        if i > -1 :
             V[i] += g*h + F[i]*h
     for i in range(3):
         P[i] += V[i]
