@@ -1,0 +1,54 @@
+
+# Floor operation
+print ("floor of 3/2 = ", 3 // 2)
+print ("floor of -3/2 = ", -3 // 2)
+
+# Fractional part of 4/3
+print ("fractional part of 4/3 = ", 4/3 - 4//3)
+
+# Power (exponentiation)
+print ("3^3 = ", 3**3)
+print ("sqrt of 2 = ", 2**0.5)
+
+# Fraction
+from fractions import Fraction
+frac1 = Fraction(3,4)
+print (frac1)
+
+frac2 = Fraction(1,5)
+print (frac2)
+
+fracSum = frac1 + frac2
+print (frac1, " + ", frac2, " = ", fracSum)
+
+print (fracSum, " + ", 1.1, " = ", fracSum + 1.1)
+
+
+# Complex Numbers
+a = 2 + 3j
+b = 3 + 3j
+
+print (a, "x" , b, "=" , a*b)
+print("conjugate of ", a, " is ", a.conjugate())
+
+# Magnitude of complex numbers
+# 1
+MagA = (a.real**2 + a.imag**2 ) **0.5
+print ("magnitude of a ( sqrt(a.real^2 + a.imag^2) ) = ", MagA)
+print ("abs(a) = ", abs(a))
+
+# input
+print ("2^x : input x ")
+x = float(input())
+print ("2^",x, "=", 2**x)
+
+# Farenheight to Celsius
+print ("input a Fahrenheight degree: ")
+degreeF = float(input())
+degreeC = (degreeF-32.0)*Fraction(5,9)
+print ('{0} degF = {1} degC'.format(degreeF, degreeC))
+
+
+
+
+

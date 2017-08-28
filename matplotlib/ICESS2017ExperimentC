@@ -1,0 +1,267 @@
+# -----------------------------------------------------------------------------
+# 2017, Young-Min Kang. All Rights Reserved.
+# Euler simulation of Spring-Damper
+# -----------------------------------------------------------------------------
+
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from matplotlib.widgets import Button
+from matplotlib.patches import Polygon
+from matplotlib.collections import PatchCollection
+
+
+matplotlib.rcParams['toolbar'] = 'None'
+
+fig, ax = plt.subplots()
+
+def distance(a, b) :
+    lx = a[0] - b[0]
+    ly = a[1] - b[1]
+    return np.sqrt(lx*lx+ly*ly)
+nW = 10
+nH = 8
+nP = nW * nH + 1
+nS = (nW-1)*nH + (nH-1)*nW + (nW-1)*(nH-1)*2
+wLen = 1.0
+
+P = np.zeros((nP,2))
+S = np.zeros((nS,2), dtype=np.int)
+V = np.zeros((nP,2))
+F = np.zeros((nP,2))
+tempF = np.zeros((nP,2))
+
+def SetVertices(nw, nh, width) :
+    idx = 0
+    for i in range(nw):
+        for j in range(nh):
+            P[idx]=[i*width-5,15.0-j*width+i*0.1]
+            idx+=1
+    P[nw*nh] = [-6, 15]
+
+def SetSprings(nw, nh) :
+    for i in range((nw-1)*nh) :
+        r = i//(nw-1)
+        c = i%(nw-1)
+        idx = c*nh+r
+        S[i] = [idx, idx+nh]
+    for i in range((nh-1)*nw) :
+        c = i//(nh-1)
+        r = i%(nh-1)
+        idx = c*nh+r
+        S[i+(nw-1)*nh] = [idx, idx+1]
+    for i in range(0, (nw-1)*(nh-1)*2, 2):
+        halfI = i/2
+        r = halfI//(nw - 1)
+        c = halfI %(nw - 1)
+        idx = c * nh + r
+        S[i + (nw - 1) * nh + (nh - 1) * nw]     = [idx, idx + 1 + nh]
+        S[i + (nw - 1) * nh + (nh - 1) * nw + 1] = [idx + 1, idx + nh]
+
+
+SetVertices(nW, nH, wLen)
+SetSprings(nW, nH)
+
+
+l0 = []
+
+for i in range(nS):
+    a = S[i][0]
+    b = S[i][1]
+    l0.append(distance(P[a], P[b]))
+
+k = 1000000000.0
+#k = 4000.0
+d = 50.0
+g = np.array([0,-9.8])
+h = 0.03
+m1 = 0.1
+m2 = 0.1
+omega = np.sqrt(k * (m1 + m2) / (m1*m2)) * np.sqrt(1 - d * d * (m1 + m2) / (2.0 * k * (m1 * m2)))
+alpha = d*(m1+m2)/(2.0*(m1*m2))
+
+scale = 100.0015 #160.102234468
+iter = int(h // (np.pi *scale / omega)) + 1
+h = np.pi*scale / omega
+print (h)
+criticalInterval = np.pi/omega
+
+
+scat = plt.scatter(P[:, 0], P[:, 1])
+
+plt.xlim(-10,10)
+plt.ylim(0,20)
+
+startFlag = True
+
+def start(event) :
+    global startFlag
+    if startFlag:
+        startFlag = False
+    else :
+        startFlag = True
+
+def reset(event) :
+    global P, V, startFlag
+    P = np.array([[0.0, 15.0], [-1.0, 15.0 - np.sqrt(3.0)], [9.0, 15.0 - np.sqrt(3.0)], [0.0, 15.0 - np.sqrt(3.0) * 2.0]])
+    V = np.array([[0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0]])
+    startFlag = False
+
+def update(frame) :
+    global P, S, F, tempF, h, m1, m2, omega, alpha, iter, l0, k, d, startFlag
+    if startFlag is False:
+        scat.set_offsets(P)
+        return scat,
+
+    #if h > np.pi * 0.5 / omega:
+    #    h = np.pi * 0.4 / omega
+
+
+    print (iter)
+    for iteration in range(iter):
+        for i in range(nP):
+            tempF[i] = F[i]
+            F[i] = [0,0]
+
+
+        for i in range(nS):  # for every spring
+            a = S[i][0]
+            b = S[i][1]
+            l = distance(P[a], P[b])
+
+
+            vr = V[b]-V[a]
+            deform = l - l0[i]
+            ab = (P[b] - P[a])
+            if l>0.0:
+                abBar = ab / l
+                dldt = np.dot(ab, vr)/l
+            else :
+                abBar = np.array([1.0, 0.0])
+                dldt = 0.0
+
+
+            A = np.sqrt(deform*deform + 2.0*(m1*m2)*dldt*dldt/(k*(m1+m2)))
+            dDA = 0.0
+            arcsine = 0.0
+            if A != 0.0 :
+                dDA = deform/A;
+                arcsine = np.arcsin(dDA)
+            if deform>0 and dldt < 0 :
+                arcsine = np.pi - arcsine
+
+            if deform<=0 :
+                if dldt > 0 :
+                    arcsine = 2.0 * np.pi + arcsine
+                else :
+                    arcsine = np.pi - arcsine
+
+            t = arcsine
+            T0 = t / omega
+            exp_kdt0 = np.exp(-alpha*T0)
+            exp_kdh = np.exp(-alpha*h)
+            coeff = 0.125 * A * k * (m1+m2)/ ((m1*m2)*(omega*omega + alpha*alpha))    # int f / m = dV   # 1/8 (eight springs)
+            swt = np.sin(omega*T0)
+            cwt = np.cos(omega*T0)
+            swh = np.sin(omega*h)
+            cwh = np.cos(omega*h)
+
+            f = -coeff*exp_kdt0 * ( swt*(exp_kdh*(alpha*cwh-omega*swh) - alpha) + cwt*(exp_kdh*(alpha*swh + omega*cwh) - omega) )
+            F[a] += (f*m2/(m1+m2))*abBar
+            F[b] -= (f*m1/(m1+m2))*abBar
+
+
+        for i in range(nP):
+            tempV = V[i]
+            if i > -1 and i< nW*nH:
+                tempP = P[i]
+                V[i] += g*h + (F[i])
+                P[i] += V[i]*h #((np.pi*(2.0+(scale - 2.0*(scale//2))))/omega) #h
+            elif i is nW*nH :
+                V[i] += g*h
+                P[i] += V[i]*h
+
+        # collision
+        e = 0.5;
+        for i in range(nP):
+            if P[i][1] < 0:
+                P[i][1] -= (1.0+e)*P[i][1]
+                if V[i][1] < 0:
+                    V[i][1] -= (1.0 + e) * V[i][1]
+
+    scat.set_offsets(P)
+
+    return scat, #patch
+
+def updateE(frame) :
+    global P, S, F, l0, k, h, d, startFlag
+    if startFlag is False:
+        scat.set_offsets(P)
+        return scat,
+
+    for iteration in range(iter) :
+        for i in range(nP):
+            F[i] = [0,0]
+
+        for i in range(nS):  # for every spring
+            a = S[i][0]
+            b = S[i][1]
+            l = distance(P[a], P[b])
+            m1 = 1.0;
+            m2 = 1.0;
+
+
+            vr = V[b]-V[a]
+            deform = l - l0[i]
+            ab = (P[b] - P[a])
+            if l>0.0:
+                abBar = ab / l
+            else :
+                abBar = np.array([1.0, 0.0])
+
+            F[a] += k*deform*abBar;
+            F[b] -= k*deform*abBar;
+
+        for i in range(nP):
+            if i > -1 :
+                V[i] += g*h + F[i]*h
+                P[i] += V[i]*h
+
+        print(h)
+        # collision
+        e = 0.0;
+        for i in range(nP):
+            if P[i][1] < 0:
+                P[i][1] -= (1.0+e)*P[i][1]
+                if V[i][1] < 0:
+                    V[i][1] -= (1.0 + e) * V[i][1]
+
+    scat.set_offsets(P)
+
+    return scat, #patch
+plt.grid(True)
+
+plt.title("Stiff Harmonic Oscillator")
+plt.text(-9, 16, r'$\kappa_s$ = ' + str(k))
+plt.text(-9, 15, r'$\omega_d$ = ' + str(omega))
+plt.text(-9, 14, r'$\alpha$ = ' + str(alpha))
+plt.text(-9, 13, r'$\kappa_d$ = ' + str(d))
+plt.text(-9, 12, r'$mass$ = ' + str(m1))
+plt.text( 3, 15, r'$Ae^{-\alpha t} \sin {\omega_{d} t}$ ')
+plt.text( 3, 14, r'$h_{c}$ = ' + str(criticalInterval))
+plt.text( 3, 13, r'$h$ = ' + str(h))
+plt.text( 3, 12, r'$\frac{h}{h_c}$ = ' + str(h/criticalInterval))
+
+startBox = plt.axes([0.2, 0.8, 0.1, 0.05])
+bStart = Button(startBox, 'Start')
+bStart.on_clicked(start)
+
+resetBox = plt.axes([0.3, 0.8, 0.1, 0.05])
+bReset = Button(resetBox, 'Reset')
+bReset.on_clicked(reset)
+
+animation = FuncAnimation(fig, update, interval = 10, frames = 1000, blit=False)
+#animation.save('triangle.mp4', writer="ffmpeg")
+
+plt.show()
